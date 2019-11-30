@@ -93,9 +93,9 @@ class TestingAgent {
                     synapseConfiguration = pairOfSequenceDeployment.getKey();
                     key = pairOfSequenceDeployment.getValue();
 
-                    if (key.equals(artifactNameOrKey)) {
+                    if (key.contains(artifactNameOrKey)) {
                         isArtifactDeployed = true;
-                        deploymentStats.put(artifactNameOrKey, TYPE_SEQUENCE);
+                        deploymentStats.put(key, TYPE_SEQUENCE);
                         testSuiteSummary.setDeploymentStatus(Constants.PASSED_KEY);
                         log.info("Sequence artifact deployed successfully");
                     } else {
@@ -112,9 +112,9 @@ class TestingAgent {
                     synapseConfiguration = pairOfProxyDeployment.getKey();
                     key = pairOfProxyDeployment.getValue();
 
-                    if (key.equals(artifactNameOrKey)) {
+                    if (key.contains(artifactNameOrKey)) {
                         isArtifactDeployed = true;
-                        deploymentStats.put(artifactNameOrKey, TYPE_PROXY);
+                        deploymentStats.put(key, TYPE_PROXY);
                         testSuiteSummary.setDeploymentStatus(Constants.PASSED_KEY);
                         log.info("Proxy artifact deployed successfully");
                     } else {
@@ -132,9 +132,9 @@ class TestingAgent {
                     key = pairofApiDeployment.getValue();
                     artifactNode = artifact;
 
-                    if (key.equals(artifactNameOrKey)) {
+                    if (key.contains(artifactNameOrKey)) {
                         isArtifactDeployed = true;
-                        deploymentStats.put(artifactNameOrKey, TYPE_API);
+                        deploymentStats.put(key, TYPE_API);
                         testSuiteSummary.setDeploymentStatus(Constants.PASSED_KEY);
                         log.info("API artifact deployed successfully");
                     } else {
@@ -245,9 +245,9 @@ class TestingAgent {
                 throw new IOException("Undefined operation type for <test-artifact> given in unit testing agent");
         }
 
-        if (key.equals(artifactNameOrKey)) {
+        if (key.contains(artifactNameOrKey)) {
             log.info(artifactNameOrKey + " - " + supportiveArtifactType + " artifact deployed successfully");
-            deploymentStats.put(artifactNameOrKey, supportiveArtifactType);
+            deploymentStats.put(key, supportiveArtifactType);
             return true;
 
         } else {
